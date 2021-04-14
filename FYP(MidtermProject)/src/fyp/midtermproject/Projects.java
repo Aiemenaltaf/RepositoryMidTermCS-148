@@ -5,6 +5,10 @@
  */
 package fyp.midtermproject;
 
+import java.util.ArrayList;
+import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
+
 /**
  *
  * @author Altaf Hussain
@@ -14,10 +18,43 @@ public class Projects extends javax.swing.JFrame {
     /**
      * Creates new form Projects
      */
+    
+      
+    DefaultTableModel model;
+    
     public Projects() {
         initComponents();
+         this.model = new DefaultTableModel();
+        model.addColumn("Project Title");
+        model.addColumn("Project Type");
+        model.addColumn("Project Description");
+        ProjectTable.setModel(model);
     }
 
+    
+      public ArrayList ListProjects(String ProjectTitle, String ProjectType, String ProjectDescpt )
+    {
+        ArrayList<ProjectsData> list = new ArrayList<>() ;
+        ProjectsData Pd;
+        Pd = new ProjectsData(ProjectTitle,ProjectType,ProjectDescpt );
+        list.add(Pd);
+       
+        return list;
+      }
+      
+      public void addRow(String ProjectTitle, String ProjectType, String ProjectDescpt)
+    {
+        DefaultTableModel model = (DefaultTableModel) ProjectTable.getModel();
+         ArrayList<ProjectsData> list = ListProjects(ProjectTitle, ProjectType, ProjectDescpt);
+         Object rowData[] = new Object[4];
+         for (int i =0 ;i < list.size(); i++)
+         {
+             rowData[0] = list.get(i).ProjectTitle;
+             rowData[1] = list.get(i).ProjectType;
+             rowData[2] = list.get(i). ProjectDescpt;
+             model.addRow(rowData);
+         }
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -32,16 +69,16 @@ public class Projects extends javax.swing.JFrame {
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
-        jTextField2 = new javax.swing.JTextField();
+        P_Title = new javax.swing.JTextField();
+        P_Type = new javax.swing.JTextField();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTextArea1 = new javax.swing.JTextArea();
-        jButton1 = new javax.swing.JButton();
+        P_Descrpt = new javax.swing.JTextArea();
+        CanceBtN = new javax.swing.JButton();
         jScrollPane2 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
-        jButton2 = new javax.swing.JButton();
-        jButton3 = new javax.swing.JButton();
-        jButton4 = new javax.swing.JButton();
+        ProjectTable = new javax.swing.JTable();
+        AddBTN = new javax.swing.JButton();
+        UpdateBTN = new javax.swing.JButton();
+        DeleteBTN = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -57,24 +94,30 @@ public class Projects extends javax.swing.JFrame {
 
         jLabel4.setText("Description");
 
-        jTextField2.addActionListener(new java.awt.event.ActionListener() {
+        P_Title.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField2ActionPerformed(evt);
+                P_TitleActionPerformed(evt);
             }
         });
 
-        jTextArea1.setColumns(20);
-        jTextArea1.setRows(5);
-        jScrollPane1.setViewportView(jTextArea1);
-
-        jButton1.setText("Cancel");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        P_Type.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                P_TypeActionPerformed(evt);
             }
         });
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        P_Descrpt.setColumns(20);
+        P_Descrpt.setRows(5);
+        jScrollPane1.setViewportView(P_Descrpt);
+
+        CanceBtN.setText("Cancel");
+        CanceBtN.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                CanceBtNActionPerformed(evt);
+            }
+        });
+
+        ProjectTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
                 {null, null, null, null},
@@ -85,13 +128,28 @@ public class Projects extends javax.swing.JFrame {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
-        jScrollPane2.setViewportView(jTable1);
+        jScrollPane2.setViewportView(ProjectTable);
 
-        jButton2.setText("Add");
+        AddBTN.setText("Add");
+        AddBTN.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                AddBTNActionPerformed(evt);
+            }
+        });
 
-        jButton3.setText("Update");
+        UpdateBTN.setText("Update");
+        UpdateBTN.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                UpdateBTNActionPerformed(evt);
+            }
+        });
 
-        jButton4.setText("Delete");
+        DeleteBTN.setText("Delete");
+        DeleteBTN.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                DeleteBTNActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -102,24 +160,29 @@ public class Projects extends javax.swing.JFrame {
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(22, 22, 22)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jButton1)
+                            .addComponent(CanceBtN)
                             .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                 .addGroup(jPanel1Layout.createSequentialGroup()
-                                    .addComponent(jButton2)
+                                    .addComponent(AddBTN)
                                     .addGap(18, 18, 18)
-                                    .addComponent(jButton3)
+                                    .addComponent(UpdateBTN)
                                     .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                    .addComponent(jButton4))
+                                    .addComponent(DeleteBTN))
                                 .addGroup(jPanel1Layout.createSequentialGroup()
                                     .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                         .addComponent(jLabel2)
                                         .addComponent(jLabel3)
                                         .addComponent(jLabel4))
-                                    .addGap(57, 57, 57)
-                                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                        .addComponent(jScrollPane1)
-                                        .addComponent(jTextField1)
-                                        .addComponent(jTextField2))))))
+                                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addGroup(jPanel1Layout.createSequentialGroup()
+                                            .addGap(57, 57, 57)
+                                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                                .addComponent(P_Title, javax.swing.GroupLayout.DEFAULT_SIZE, 166, Short.MAX_VALUE)
+                                                .addComponent(P_Type)))
+                                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addGap(5, 5, 5)))))))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(92, 92, 92)
                         .addComponent(jLabel1)))
@@ -138,24 +201,21 @@ public class Projects extends javax.swing.JFrame {
                                 .addComponent(jLabel1)
                                 .addGap(42, 42, 42)
                                 .addComponent(jLabel2))
-                            .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(P_Title, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(27, 27, 27)
                         .addComponent(jLabel3))
-                    .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(P_Type, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(26, 26, 26)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(26, 26, 26)
-                        .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(18, 18, 18)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(39, 39, 39)
-                .addComponent(jButton1)
+                    .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(31, 31, 31)
+                .addComponent(CanceBtN)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton2)
-                    .addComponent(jButton3)
-                    .addComponent(jButton4))
+                    .addComponent(AddBTN)
+                    .addComponent(UpdateBTN)
+                    .addComponent(DeleteBTN))
                 .addGap(49, 49, 49))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -177,14 +237,74 @@ public class Projects extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void P_TypeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_P_TypeActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_P_TypeActionPerformed
+
+    private void AddBTNActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AddBTNActionPerformed
+        // TODO add your handling code here:
+        String ProjectTitle = P_Title.getText();
+        String ProjectType =  P_Type.getText();
+        String ProjectDescpt = P_Descrpt.getText();
+        
+        addRow(ProjectTitle,ProjectType, ProjectDescpt);
+        P_Title.setText("");
+        P_Type.setText("");
+        P_Descrpt.setText("");
+        
+    }//GEN-LAST:event_AddBTNActionPerformed
+
+    private void P_TitleActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_P_TitleActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_P_TitleActionPerformed
+
+    private void CanceBtNActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CanceBtNActionPerformed
         // TODO add your handling code here:
         this.dispose();
-    }//GEN-LAST:event_jButton1ActionPerformed
+    }//GEN-LAST:event_CanceBtNActionPerformed
 
-    private void jTextField2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField2ActionPerformed
+    private void DeleteBTNActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_DeleteBTNActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField2ActionPerformed
+          DefaultTableModel model= (DefaultTableModel) ProjectTable.getModel();
+        if(ProjectTable.getSelectedRowCount()==1)
+        {
+            model.removeRow(ProjectTable.getSelectedRow());
+        }
+        else
+        {
+            if(ProjectTable.getRowCount()==0)
+            {
+            JOptionPane.showMessageDialog(null,"Table is empty");
+        }
+        else{
+           JOptionPane.showMessageDialog(null,"Please select any row!");
+        }
+        }
+    }//GEN-LAST:event_DeleteBTNActionPerformed
+
+    private void UpdateBTNActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_UpdateBTNActionPerformed
+        // TODO add your handling code here:
+           DefaultTableModel model= (DefaultTableModel) ProjectTable.getModel();
+        if(ProjectTable.getSelectedRowCount()==1){
+        String ProjectTitle = P_Title.getText();
+        String ProjectType =  P_Type.getText();
+        String ProjectDescpt = P_Descrpt.getText();
+        
+        ProjectTable.setValueAt(ProjectTitle, ProjectTable.getSelectedRow(), 0);
+        ProjectTable.setValueAt(ProjectType, ProjectTable.getSelectedRow(), 1);
+        ProjectTable.setValueAt(ProjectDescpt, ProjectTable.getSelectedRow(), 2);
+        
+        JOptionPane.showMessageDialog(null,"Project List Updated Successfully");
+        }
+        else{
+        if(ProjectTable.getRowCount()==0){
+            JOptionPane.showMessageDialog(null,"Table is empty");
+        }
+        else{
+            JOptionPane.showMessageDialog(null,"Please select any row!");
+        }
+        }
+    }//GEN-LAST:event_UpdateBTNActionPerformed
 
     /**
      * @param args the command line arguments
@@ -222,10 +342,14 @@ public class Projects extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
-    private javax.swing.JButton jButton4;
+    private javax.swing.JButton AddBTN;
+    private javax.swing.JButton CanceBtN;
+    private javax.swing.JButton DeleteBTN;
+    private javax.swing.JTextArea P_Descrpt;
+    private javax.swing.JTextField P_Title;
+    private javax.swing.JTextField P_Type;
+    private javax.swing.JTable ProjectTable;
+    private javax.swing.JButton UpdateBTN;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -233,9 +357,5 @@ public class Projects extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
-    private javax.swing.JTable jTable1;
-    private javax.swing.JTextArea jTextArea1;
-    private javax.swing.JTextField jTextField1;
-    private javax.swing.JTextField jTextField2;
     // End of variables declaration//GEN-END:variables
 }
