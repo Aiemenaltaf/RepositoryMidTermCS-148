@@ -31,12 +31,12 @@ public class ProjectsData {
     
     public String getType()
     {
-      return ProjectTitle;   
+      return ProjectType;   
     }
      
-    public String setDescription()
+    public String getDescription()
     {
-      return ProjectTitle;   
+      return ProjectDescpt;   
     }
     
 }

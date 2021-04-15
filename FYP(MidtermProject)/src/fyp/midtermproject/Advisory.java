@@ -5,18 +5,57 @@
  */
 package fyp.midtermproject;
 
+import java.util.ArrayList;
+import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
+
+
 /**
  *
  * @author Altaf Hussain
  */
 public class Advisory extends javax.swing.JFrame {
+    DefaultTableModel model;
 
     /**
      * Creates new form Advisory
      */
     public Advisory() {
         initComponents();
+        this.model = new DefaultTableModel();
+        model.addColumn("Advisor Name");
+        model.addColumn("Advisor CNIC");
+        model.addColumn("Advisor Email");
+        model.addColumn("Advisor Phone Number");
+        jTable1.setModel(model);
     }
+    
+     
+    public ArrayList ListAdvisory(String AdvName, String AdvCNIC, String AdvEmail, String AdvPhoneNo)
+    {
+        ArrayList<AdvisoryData> list = new ArrayList<>() ;
+        AdvisoryData Ad = new AdvisoryData( AdvName, AdvCNIC, AdvEmail, AdvPhoneNo );
+        list.add(Ad);
+       
+        return list;
+      }
+    
+     public void addRow(String AdvName, String AdvCNIC, String AdvEmail, String AdvPhoneNo)
+    {
+        DefaultTableModel model = (DefaultTableModel) jTable1.getModel();
+         ArrayList<AdvisoryData> list = ListAdvisory(  AdvName, AdvCNIC, AdvEmail, AdvPhoneNo);
+         Object rowData[] = new Object[4];
+         for (int i =0 ;i < list.size(); i++)
+         {
+             rowData[0] = list.get(i).AdvName;
+             rowData[1] = list.get(i).AdvCNIC;
+             rowData[2] = list.get(i).AdvEmail;
+             rowData[3] = list.get(i).AdvPhoneNo;
+             model.addRow(rowData);
+         }
+       
+      }
+  
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -32,15 +71,17 @@ public class Advisory extends javax.swing.JFrame {
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
-        jTextField2 = new javax.swing.JTextField();
+        Adv_Name = new javax.swing.JTextField();
+        Adv_CNiC = new javax.swing.JTextField();
         jButton1 = new javax.swing.JButton();
         jScrollPane2 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
-        jButton2 = new javax.swing.JButton();
-        jButton3 = new javax.swing.JButton();
-        jButton4 = new javax.swing.JButton();
-        jTextField3 = new javax.swing.JTextField();
+        AddBTN = new javax.swing.JButton();
+        UpdateBTN = new javax.swing.JButton();
+        DelteBtN = new javax.swing.JButton();
+        Adv_PhoneNo = new javax.swing.JTextField();
+        jLabel5 = new javax.swing.JLabel();
+        Adv_Email = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -54,11 +95,17 @@ public class Advisory extends javax.swing.JFrame {
 
         jLabel3.setText("CNIC");
 
-        jLabel4.setText("PhoneNo");
+        jLabel4.setText("Email");
 
-        jTextField2.addActionListener(new java.awt.event.ActionListener() {
+        Adv_Name.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField2ActionPerformed(evt);
+                Adv_NameActionPerformed(evt);
+            }
+        });
+
+        Adv_CNiC.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                Adv_CNiCActionPerformed(evt);
             }
         });
 
@@ -82,11 +129,40 @@ public class Advisory extends javax.swing.JFrame {
         ));
         jScrollPane2.setViewportView(jTable1);
 
-        jButton2.setText("Add");
+        AddBTN.setText("Add");
+        AddBTN.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                AddBTNActionPerformed(evt);
+            }
+        });
 
-        jButton3.setText("Update");
+        UpdateBTN.setText("Update");
+        UpdateBTN.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                UpdateBTNActionPerformed(evt);
+            }
+        });
 
-        jButton4.setText("Delete");
+        DelteBtN.setText("Delete");
+        DelteBtN.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                DelteBtNActionPerformed(evt);
+            }
+        });
+
+        Adv_PhoneNo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                Adv_PhoneNoActionPerformed(evt);
+            }
+        });
+
+        jLabel5.setText("PhoneNo");
+
+        Adv_Email.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                Adv_EmailActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -95,45 +171,45 @@ public class Advisory extends javax.swing.JFrame {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(22, 22, 22)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGap(22, 22, 22)
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(jPanel1Layout.createSequentialGroup()
-                                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addComponent(jLabel2)
-                                            .addComponent(jLabel3)
-                                            .addComponent(jLabel4))
-                                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                                .addGap(57, 57, 57)
-                                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                                    .addComponent(jTextField1, javax.swing.GroupLayout.DEFAULT_SIZE, 166, Short.MAX_VALUE)
-                                                    .addComponent(jTextField2)))
-                                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                                .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, 166, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                                    .addGroup(jPanel1Layout.createSequentialGroup()
-                                        .addComponent(jButton2)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                        .addComponent(jButton3)
-                                        .addGap(18, 18, 18)
-                                        .addComponent(jButton4)
-                                        .addGap(0, 46, Short.MAX_VALUE))))
+                                    .addComponent(jLabel2)
+                                    .addComponent(jLabel3)
+                                    .addComponent(jLabel4))
+                                .addGap(37, 37, 37)
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(Adv_CNiC, javax.swing.GroupLayout.DEFAULT_SIZE, 203, Short.MAX_VALUE)
+                                    .addComponent(Adv_Name)
+                                    .addComponent(Adv_Email)))
                             .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGap(92, 92, 92)
-                                .addComponent(jLabel1)))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED))
+                                .addComponent(jLabel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(Adv_PhoneNo, javax.swing.GroupLayout.PREFERRED_SIZE, 202, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(92, 92, 92)
+                        .addComponent(jLabel1)
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(26, 26, 26)
+                        .addComponent(AddBTN)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 11, Short.MAX_VALUE)
+                        .addComponent(UpdateBTN)
+                        .addGap(28, 28, 28)
+                        .addComponent(DelteBtN)
+                        .addGap(33, 33, 33))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(jButton1)
-                        .addGap(15, 15, 15)))
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 452, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)))
+                .addGap(24, 24, 24)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 634, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
@@ -142,26 +218,30 @@ public class Advisory extends javax.swing.JFrame {
                                 .addComponent(jLabel1)
                                 .addGap(42, 42, 42)
                                 .addComponent(jLabel2))
-                            .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(Adv_Name, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(27, 27, 27)
                         .addComponent(jLabel3))
-                    .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(Adv_CNiC, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(61, 61, 61)
+                    .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(Adv_Email, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(Adv_PhoneNo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
                 .addComponent(jButton1)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton2)
-                    .addComponent(jButton3)
-                    .addComponent(jButton4))
-                .addGap(92, 92, 92))
+                    .addComponent(DelteBtN)
+                    .addComponent(UpdateBTN)
+                    .addComponent(AddBTN))
+                .addGap(48, 48, 48))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addContainerGap(55, Short.MAX_VALUE)
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 394, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(50, 50, 50))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 368, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(32, 32, 32))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -172,20 +252,93 @@ public class Advisory extends javax.swing.JFrame {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 409, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jTextField2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField2ActionPerformed
+    private void Adv_CNiCActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Adv_CNiCActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField2ActionPerformed
+    }//GEN-LAST:event_Adv_CNiCActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
         this.dispose();
     }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void Adv_NameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Adv_NameActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_Adv_NameActionPerformed
+
+    private void Adv_EmailActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Adv_EmailActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_Adv_EmailActionPerformed
+
+    private void Adv_PhoneNoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Adv_PhoneNoActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_Adv_PhoneNoActionPerformed
+
+    private void AddBTNActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AddBTNActionPerformed
+        // TODO add your handling code here:
+           String AdvName = Adv_Name.getText();
+           String AdvCNIC = Adv_CNiC.getText();
+           String AdvEmail = Adv_Email.getText();
+           String AdvPhoneNo = Adv_PhoneNo.getText();
+            addRow( AdvName, AdvCNIC, AdvEmail, AdvPhoneNo );
+             Adv_Name.setText("");
+             Adv_CNiC.setText("");
+             Adv_Email.setText("");
+             Adv_PhoneNo.setText("");
+    }//GEN-LAST:event_AddBTNActionPerformed
+
+    private void UpdateBTNActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_UpdateBTNActionPerformed
+        // TODO add your handling code here:
+        DefaultTableModel model= (DefaultTableModel) jTable1.getModel();
+        if(jTable1.getSelectedRowCount()==1){
+           String AdvName = Adv_Name.getText();
+           String AdvCNIC = Adv_CNiC.getText();
+           String AdvEmail = Adv_Email.getText();
+           String AdvPhoneNo = Adv_PhoneNo.getText();
+        
+        
+        jTable1.setValueAt(Adv_Name, jTable1.getSelectedRow(), 0);
+        jTable1.setValueAt(Adv_CNiC, jTable1.getSelectedRow(), 1);
+        jTable1.setValueAt(Adv_Email, jTable1.getSelectedRow(), 2);
+        jTable1.setValueAt(Adv_PhoneNo, jTable1.getSelectedRow(), 3);
+        
+        JOptionPane.showMessageDialog(null,"List of Advisors Updated Successfully");
+        }
+        else{
+        if(jTable1.getRowCount()==0){
+            JOptionPane.showMessageDialog(null,"Table is empty");
+        }
+        else{
+            JOptionPane.showMessageDialog(null,"Please select any row!");
+        }
+        }
+        
+    }//GEN-LAST:event_UpdateBTNActionPerformed
+
+    private void DelteBtNActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_DelteBtNActionPerformed
+        // TODO add your handling code here:
+        
+         DefaultTableModel model= (DefaultTableModel) jTable1.getModel();
+        if(jTable1.getSelectedRowCount()==1)
+        {
+            model.removeRow(jTable1.getSelectedRow());
+        }
+        else
+        {
+            if(jTable1.getRowCount()==0)
+            {
+            JOptionPane.showMessageDialog(null,"Table is empty");
+        }
+        else{
+           JOptionPane.showMessageDialog(null,"Please select any row!");
+        }
+        }
+    }//GEN-LAST:event_DelteBtNActionPerformed
 
     /**
      * @param args the command line arguments
@@ -223,19 +376,21 @@ public class Advisory extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton AddBTN;
+    private javax.swing.JTextField Adv_CNiC;
+    private javax.swing.JTextField Adv_Email;
+    private javax.swing.JTextField Adv_Name;
+    private javax.swing.JTextField Adv_PhoneNo;
+    private javax.swing.JButton DelteBtN;
+    private javax.swing.JButton UpdateBTN;
     private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
-    private javax.swing.JButton jButton4;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JTable jTable1;
-    private javax.swing.JTextField jTextField1;
-    private javax.swing.JTextField jTextField2;
-    private javax.swing.JTextField jTextField3;
     // End of variables declaration//GEN-END:variables
 }
