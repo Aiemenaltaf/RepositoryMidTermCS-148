@@ -174,4 +174,53 @@ public class FilehandlingFYP {
      }
     //**********************************************************************************
 
+      public List<EvaluationData> E1;
+    public void saveEvlCriteriaData(String filename)
+    {
+        try{
+            FileWriter fw = new FileWriter(filename);
+            BufferedWriter bw = new BufferedWriter(fw);
+            
+            bw.write("Assignment Title, Marks,Rubrics,Deadline\n");
+            
+            for(int i = 0 ; i < E1.size();i++)
+            {
+                bw.write(E1.get(i).getEvlTitle()+ ", "+
+                        E1.get(i).getEvlMarks()+ ","+
+                        E1.get(i).getEvlRubrics()+ ","+
+                        E1.get(i).getEvlDaeadline()+ " \n");
+            }
+            
+            bw.flush();
+            bw.close();
+            fw.close();
+        } catch (Exception ex) {
+             JOptionPane.showMessageDialog(null,"Exception message" + ex);
+        }
+    }
+    //P1 
+    public void loadEvlCriteriaData(String filename)
+    {
+        try {
+            FileReader fr = new FileReader(filename);
+            BufferedReader br = new BufferedReader(fr);
+            
+          String line = br.readLine();
+            
+          line = br.readLine();
+          while(line != null)
+          {
+               String[] toks = line.split(",");
+               new  EvaluationData(toks[0],toks[1],toks[2],toks[3]);
+               
+          }
+            
+            br.close();
+            fr.close();
+        } catch (Exception ex) {
+             JOptionPane.showMessageDialog(null,"Exception message" + ex);
+        }
+     }
+    //**********************************************************************************
+
 }

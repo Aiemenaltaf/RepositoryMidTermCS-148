@@ -337,7 +337,7 @@ public class Student extends javax.swing.JFrame {
     private void AddBTNActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AddBTNActionPerformed
         // TODO add your handling code here:
         
-          // TODO add your handling code here
+          
                  String StdName = std_Name.getText();
                  String StdID = std_ID.getText();
                  String StdEmail = std_Email.getText();
