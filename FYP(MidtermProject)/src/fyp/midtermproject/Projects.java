@@ -5,8 +5,8 @@
  */
 package fyp.midtermproject;
 
-import static com.sun.xml.internal.fastinfoset.alphabet.BuiltInRestrictedAlphabets.table;
 import java.util.ArrayList;
+import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
 import javax.swing.RowFilter;
 import javax.swing.table.DefaultTableModel;
@@ -21,6 +21,7 @@ public class Projects extends javax.swing.JFrame {
     /**
      * Creates new form Projects
      */
+    FilehandlingFYP f = new FilehandlingFYP();
     
       
     DefaultTableModel model;
@@ -84,6 +85,7 @@ public class Projects extends javax.swing.JFrame {
         DeleteBTN = new javax.swing.JButton();
         jLabel5 = new javax.swing.JLabel();
         searchField = new javax.swing.JTextField();
+        ExpField = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -176,13 +178,21 @@ public class Projects extends javax.swing.JFrame {
             }
         });
 
+        ExpField.setFont(new java.awt.Font("Tahoma", 1, 13)); // NOI18N
+        ExpField.setText("Export Data");
+        ExpField.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ExpFieldActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
                         .addGap(22, 22, 22)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel2)
@@ -194,15 +204,20 @@ public class Projects extends javax.swing.JFrame {
                             .addComponent(P_Type)
                             .addComponent(jScrollPane1))
                         .addGap(32, 32, 32))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
                         .addGap(92, 92, 92)
                         .addComponent(jLabel1)
                         .addGap(0, 0, Short.MAX_VALUE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                        .addGap(30, 30, 30)
-                        .addComponent(AddBTN, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(33, 33, 33)
-                        .addComponent(UpdateBTN, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addGap(30, 30, 30)
+                                .addComponent(AddBTN, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(33, 33, 33)
+                                .addComponent(UpdateBTN, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addGap(60, 60, 60)
+                                .addComponent(ExpField)))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 28, Short.MAX_VALUE)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                             .addComponent(DeleteBTN, javax.swing.GroupLayout.DEFAULT_SIZE, 97, Short.MAX_VALUE)
@@ -238,7 +253,9 @@ public class Projects extends javax.swing.JFrame {
                     .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(42, 42, 42)
-                .addComponent(CanceBtN, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(CanceBtN, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(ExpField, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 93, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(DeleteBTN, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -292,7 +309,8 @@ public class Projects extends javax.swing.JFrame {
 
     private void CanceBtNActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CanceBtNActionPerformed
         // TODO add your handling code here:
-        this.dispose();
+         f.saveProjectData("ProjectList.csv");
+           this.dispose();
     }//GEN-LAST:event_CanceBtNActionPerformed
 
     private void DeleteBTNActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_DeleteBTNActionPerformed
@@ -352,6 +370,27 @@ public class Projects extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_searchFieldActionPerformed
 
+    private void ExpFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ExpFieldActionPerformed
+        // TODO add your handling code here:
+        
+              JFileChooser  chooser = new JFileChooser(); 
+   
+    chooser.setDialogTitle("Choose a destination to save exported file");
+    chooser.setFileSelectionMode(JFileChooser.FILES_ONLY);
+    //
+    // disable the "All files" option.
+    //
+    //chooser.setAcceptAllFileFilterUsed(false);
+    
+    if(chooser.showSaveDialog(this) == JFileChooser.APPROVE_OPTION) { 
+     f.saveProjectData(chooser.getSelectedFile()+".csv");
+      
+      }
+    else {
+      System.out.println("No Selection ");
+      }
+    }//GEN-LAST:event_ExpFieldActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -391,6 +430,7 @@ public class Projects extends javax.swing.JFrame {
     private javax.swing.JButton AddBTN;
     private javax.swing.JButton CanceBtN;
     private javax.swing.JButton DeleteBTN;
+    private javax.swing.JButton ExpField;
     private javax.swing.JTextArea P_Descrpt;
     private javax.swing.JTextField P_Title;
     private javax.swing.JTextField P_Type;

@@ -6,6 +6,7 @@
 package fyp.midtermproject;
 
 import java.util.ArrayList;
+import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
 import javax.swing.RowFilter;
 import javax.swing.table.DefaultTableModel;
@@ -17,6 +18,7 @@ import javax.swing.table.TableRowSorter;
  * @author Altaf Hussain
  */
 public class Advisory extends javax.swing.JFrame {
+    FilehandlingFYP f = new FilehandlingFYP();
     DefaultTableModel model;
 
     /**
@@ -86,6 +88,7 @@ public class Advisory extends javax.swing.JFrame {
         Adv_Email = new javax.swing.JTextField();
         jLabel6 = new javax.swing.JLabel();
         SearchField = new javax.swing.JTextField();
+        ExpField = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -186,6 +189,14 @@ public class Advisory extends javax.swing.JFrame {
             }
         });
 
+        ExpField.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        ExpField.setText("Export Data ");
+        ExpField.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ExpFieldActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -205,20 +216,24 @@ public class Advisory extends javax.swing.JFrame {
                                     .addComponent(Adv_CNiC, javax.swing.GroupLayout.DEFAULT_SIZE, 203, Short.MAX_VALUE)
                                     .addComponent(Adv_Name)
                                     .addComponent(Adv_Email)))
-                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                .addComponent(jButton1)
-                                .addGroup(jPanel1Layout.createSequentialGroup()
-                                    .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 64, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                    .addComponent(Adv_PhoneNo, javax.swing.GroupLayout.PREFERRED_SIZE, 203, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 64, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(Adv_PhoneNo, javax.swing.GroupLayout.PREFERRED_SIZE, 203, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(0, 0, Short.MAX_VALUE))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(26, 26, 26)
                         .addComponent(AddBTN)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 18, Short.MAX_VALUE)
                         .addComponent(UpdateBTN)
-                        .addGap(18, 18, 18)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(DelteBtN)
-                        .addGap(11, 11, 11)))
+                        .addGap(11, 11, 11))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                        .addGap(95, 95, 95)
+                        .addComponent(ExpField)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jButton1)))
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(24, 24, 24)
@@ -258,12 +273,14 @@ public class Advisory extends javax.swing.JFrame {
                     .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(Adv_PhoneNo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(31, 31, 31)
-                .addComponent(jButton1)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jButton1)
+                    .addComponent(ExpField))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 119, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(DelteBtN)
-                    .addComponent(UpdateBTN)
-                    .addComponent(AddBTN))
+                    .addComponent(AddBTN)
+                    .addComponent(UpdateBTN))
                 .addGap(48, 48, 48))
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
@@ -293,7 +310,8 @@ public class Advisory extends javax.swing.JFrame {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
-        this.dispose();
+         f.saveAdvisoryData("AdvisorsList.csv");
+           this.dispose();                   
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void Adv_NameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Adv_NameActionPerformed
@@ -382,6 +400,26 @@ public class Advisory extends javax.swing.JFrame {
         tr.setRowFilter(RowFilter.regexFilter(search));
     }//GEN-LAST:event_SearchFieldKeyReleased
 
+    private void ExpFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ExpFieldActionPerformed
+        // TODO add your handling code here:
+          JFileChooser  chooser = new JFileChooser(); 
+   
+    chooser.setDialogTitle("Choose a destination to save exported file");
+    chooser.setFileSelectionMode(JFileChooser.FILES_ONLY);
+    //
+    // disable the "All files" option.
+    //
+    //chooser.setAcceptAllFileFilterUsed(false);
+    
+    if(chooser.showSaveDialog(this) == JFileChooser.APPROVE_OPTION) { 
+     f.saveAdvisoryData(chooser.getSelectedFile()+".csv");
+      
+      }
+    else {
+      System.out.println("No Selection ");
+      }
+    }//GEN-LAST:event_ExpFieldActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -425,6 +463,7 @@ public class Advisory extends javax.swing.JFrame {
     private javax.swing.JTextField Adv_Name;
     private javax.swing.JTextField Adv_PhoneNo;
     private javax.swing.JButton DelteBtN;
+    private javax.swing.JButton ExpField;
     private javax.swing.JTextField SearchField;
     private javax.swing.JButton UpdateBTN;
     private javax.swing.JButton jButton1;

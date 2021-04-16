@@ -8,6 +8,7 @@ package fyp.midtermproject;
 
 
 import java.util.ArrayList;
+import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
 import javax.swing.RowFilter;
 import javax.swing.table.DefaultTableModel;
@@ -18,6 +19,8 @@ import javax.swing.table.TableRowSorter;
  * @author Altaf Hussain
  */
 public class Student extends javax.swing.JFrame {
+    
+     FilehandlingFYP f = new FilehandlingFYP();
        DefaultTableModel model1;
 
     /** Creates new form Student */
@@ -76,7 +79,7 @@ public class Student extends javax.swing.JFrame {
         std_ID = new javax.swing.JTextField();
         std_Email = new javax.swing.JTextField();
         std_CNIC = new javax.swing.JTextField();
-        jButton1 = new javax.swing.JButton();
+        ExpField = new javax.swing.JButton();
         AddBTN = new javax.swing.JButton();
         DeleteBTN = new javax.swing.JButton();
         UpdateBTN = new javax.swing.JButton();
@@ -84,6 +87,7 @@ public class Student extends javax.swing.JFrame {
         StdTable = new javax.swing.JTable();
         jLabel7 = new javax.swing.JLabel();
         SearchField = new javax.swing.JTextField();
+        jButton2 = new javax.swing.JButton();
 
         jLabel6.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         jLabel6.setText("Search");
@@ -122,11 +126,11 @@ public class Student extends javax.swing.JFrame {
             }
         });
 
-        jButton1.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
-        jButton1.setText("Cancel");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        ExpField.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        ExpField.setText("Export Data");
+        ExpField.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                ExpFieldActionPerformed(evt);
             }
         });
 
@@ -181,36 +185,47 @@ public class Student extends javax.swing.JFrame {
             }
         });
 
+        jButton2.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        jButton2.setText("Cancel");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(jPanel1Layout.createSequentialGroup()
+                            .addGap(26, 26, 26)
+                            .addComponent(AddBTN)
+                            .addGap(40, 40, 40)
+                            .addComponent(DeleteBTN)
+                            .addGap(37, 37, 37)
+                            .addComponent(UpdateBTN))
+                        .addGroup(jPanel1Layout.createSequentialGroup()
+                            .addGap(35, 35, 35)
+                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(jLabel2)
+                                .addComponent(jLabel5)
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                    .addComponent(jLabel3, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(jLabel4, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                            .addGap(55, 55, 55)
+                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                .addComponent(std_Name, javax.swing.GroupLayout.DEFAULT_SIZE, 280, Short.MAX_VALUE)
+                                .addComponent(std_ID)
+                                .addComponent(std_Email)
+                                .addComponent(std_CNIC))))
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(35, 35, 35)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel2)
-                            .addComponent(jLabel5)
-                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                .addComponent(jLabel3, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(jLabel4, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                        .addGap(55, 55, 55)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(std_Name, javax.swing.GroupLayout.DEFAULT_SIZE, 280, Short.MAX_VALUE)
-                            .addComponent(std_ID)
-                            .addComponent(std_Email)
-                            .addComponent(std_CNIC)))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(26, 26, 26)
-                        .addComponent(AddBTN)
-                        .addGap(40, 40, 40)
-                        .addComponent(DeleteBTN)
-                        .addGap(37, 37, 37)
-                        .addComponent(UpdateBTN))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(jButton1)))
+                        .addGap(66, 66, 66)
+                        .addComponent(ExpField)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jButton2)))
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(18, 18, Short.MAX_VALUE)
@@ -250,8 +265,10 @@ public class Student extends javax.swing.JFrame {
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(std_CNIC, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel5))
-                        .addGap(18, 18, 18)
-                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(30, 30, 30)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(ExpField, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(AddBTN)
@@ -292,10 +309,26 @@ public class Student extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_std_NameActionPerformed
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void ExpFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ExpFieldActionPerformed
         // TODO add your handling code here:
-        this.dispose();
-    }//GEN-LAST:event_jButton1ActionPerformed
+        
+            JFileChooser  chooser = new JFileChooser(); 
+   
+    chooser.setDialogTitle("Choose a destination to save exported file");
+    chooser.setFileSelectionMode(JFileChooser.FILES_ONLY);
+    //
+    // disable the "All files" option.
+    //
+    //chooser.setAcceptAllFileFilterUsed(false);
+    
+    if(chooser.showSaveDialog(this) == JFileChooser.APPROVE_OPTION) { 
+     f.saveStudentData(chooser.getSelectedFile()+".csv");
+      
+      }
+    else {
+      System.out.println("No Selection ");
+      }
+    }//GEN-LAST:event_ExpFieldActionPerformed
 
     private void std_IDActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_std_IDActionPerformed
         // TODO add your handling code here:
@@ -379,6 +412,12 @@ public class Student extends javax.swing.JFrame {
         tr.setRowFilter(RowFilter.regexFilter(search));
     }//GEN-LAST:event_SearchFieldKeyReleased
 
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        // TODO add your handling code here:
+         f.saveStudentData("StudentsList.csv");
+           this.dispose();
+    }//GEN-LAST:event_jButton2ActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -417,10 +456,11 @@ public class Student extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton AddBTN;
     private javax.swing.JButton DeleteBTN;
+    private javax.swing.JButton ExpField;
     private javax.swing.JTextField SearchField;
     private javax.swing.JTable StdTable;
     private javax.swing.JButton UpdateBTN;
-    private javax.swing.JButton jButton1;
+    private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
