@@ -9,7 +9,9 @@ package fyp.midtermproject;
 
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
+import javax.swing.RowFilter;
 import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableRowSorter;
 
 /**
  *
@@ -26,7 +28,7 @@ public class Student extends javax.swing.JFrame {
         model1.addColumn("Student ID");
         model1.addColumn("Student Email");
         model1.addColumn("Student CNIC");
-        StdTabel.setModel(model1);
+        StdTable.setModel(model1);
     }
 
     public ArrayList ListStudent(String StdName, String StdID, String StdEmail, String StdCNIC)
@@ -40,7 +42,7 @@ public class Student extends javax.swing.JFrame {
     
     public void addRow(String StdName, String StdID, String StdEmail, String StdCNIC)
     {
-        DefaultTableModel model1 = (DefaultTableModel) StdTabel.getModel();
+        DefaultTableModel model1 = (DefaultTableModel) StdTable.getModel();
          ArrayList<StudentData> list = ListStudent( StdName, StdID, StdEmail,StdCNIC);
          Object rowData[] = new Object[4];
          for (int i =0 ;i < list.size(); i++)
@@ -63,6 +65,7 @@ public class Student extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jLabel6 = new javax.swing.JLabel();
         jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
@@ -78,14 +81,19 @@ public class Student extends javax.swing.JFrame {
         DeleteBTN = new javax.swing.JButton();
         UpdateBTN = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
-        StdTabel = new javax.swing.JTable();
+        StdTable = new javax.swing.JTable();
+        jLabel7 = new javax.swing.JLabel();
+        SearchField = new javax.swing.JTextField();
+
+        jLabel6.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        jLabel6.setText("Search");
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         jPanel1.setBackground(new java.awt.Color(204, 255, 204));
         jPanel1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 3));
 
-        jLabel1.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
+        jLabel1.setFont(new java.awt.Font("Tahoma", 1, 36)); // NOI18N
         jLabel1.setText("Student Details");
 
         jLabel2.setText("Name");
@@ -114,6 +122,7 @@ public class Student extends javax.swing.JFrame {
             }
         });
 
+        jButton1.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         jButton1.setText("Cancel");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -121,6 +130,7 @@ public class Student extends javax.swing.JFrame {
             }
         });
 
+        AddBTN.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
         AddBTN.setText("Add");
         AddBTN.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -128,6 +138,7 @@ public class Student extends javax.swing.JFrame {
             }
         });
 
+        DeleteBTN.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
         DeleteBTN.setText("Delete");
         DeleteBTN.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -135,6 +146,7 @@ public class Student extends javax.swing.JFrame {
             }
         });
 
+        UpdateBTN.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
         UpdateBTN.setText("Update");
         UpdateBTN.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -142,7 +154,7 @@ public class Student extends javax.swing.JFrame {
             }
         });
 
-        StdTabel.setModel(new javax.swing.table.DefaultTableModel(
+        StdTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
                 {null, null, null, null},
@@ -153,7 +165,21 @@ public class Student extends javax.swing.JFrame {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
-        jScrollPane1.setViewportView(StdTabel);
+        jScrollPane1.setViewportView(StdTable);
+
+        jLabel7.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        jLabel7.setText("Search");
+
+        SearchField.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                SearchFieldActionPerformed(evt);
+            }
+        });
+        SearchField.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                SearchFieldKeyReleased(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -162,7 +188,7 @@ public class Student extends javax.swing.JFrame {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addContainerGap()
+                        .addGap(35, 35, 35)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel2)
                             .addComponent(jLabel5)
@@ -171,8 +197,7 @@ public class Student extends javax.swing.JFrame {
                                 .addComponent(jLabel4, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                         .addGap(55, 55, 55)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(std_Name)
+                            .addComponent(std_Name, javax.swing.GroupLayout.DEFAULT_SIZE, 280, Short.MAX_VALUE)
                             .addComponent(std_ID)
                             .addComponent(std_Email)
                             .addComponent(std_CNIC)))
@@ -183,47 +208,64 @@ public class Student extends javax.swing.JFrame {
                         .addComponent(DeleteBTN)
                         .addGap(37, 37, 37)
                         .addComponent(UpdateBTN))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(252, 252, 252)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                        .addContainerGap()
                         .addComponent(jButton1)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 602, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(18, 18, Short.MAX_VALUE)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 635, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(22, 22, 22))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(243, 243, 243)
+                        .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 79, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(SearchField, javax.swing.GroupLayout.PREFERRED_SIZE, 211, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(344, 344, 344)
+                .addComponent(jLabel1)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
+                .addComponent(jLabel1)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 376, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(jLabel1)
-                        .addGap(45, 45, 45)
+                        .addGap(44, 44, 44)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel2)
                             .addComponent(std_Name, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGap(18, 18, 18)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(std_ID, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel3))
-                        .addGap(11, 11, 11)
+                        .addGap(18, 18, 18)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(std_Email, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel4))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(std_CNIC, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel5))
-                        .addGap(30, 30, 30)
-                        .addComponent(jButton1)
+                        .addGap(18, 18, 18)
+                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(AddBTN)
                             .addComponent(DeleteBTN)
                             .addComponent(UpdateBTN))
-                        .addGap(36, 36, 36))))
+                        .addGap(36, 36, 36))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 31, Short.MAX_VALUE)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(SearchField, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(32, 32, 32)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 376, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addContainerGap())))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -234,7 +276,9 @@ public class Student extends javax.swing.JFrame {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
 
         pack();
@@ -277,14 +321,14 @@ public class Student extends javax.swing.JFrame {
         // TODO add your handling code here:
         
         
-         DefaultTableModel model1= (DefaultTableModel) StdTabel.getModel();
-        if(StdTabel.getSelectedRowCount()==1)
+         DefaultTableModel model1= (DefaultTableModel) StdTable.getModel();
+        if(StdTable.getSelectedRowCount()==1)
         {
-            model1.removeRow(StdTabel.getSelectedRow());
+            model1.removeRow(StdTable.getSelectedRow());
         }
         else
         {
-            if(StdTabel.getRowCount()==0)
+            if(StdTable.getRowCount()==0)
             {
             JOptionPane.showMessageDialog(null,"Table is empty");
         }
@@ -297,22 +341,22 @@ public class Student extends javax.swing.JFrame {
     private void UpdateBTNActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_UpdateBTNActionPerformed
         // TODO add your handling code here:
         
-         DefaultTableModel model1= (DefaultTableModel) StdTabel.getModel();
-        if(StdTabel.getSelectedRowCount()==1){
+         DefaultTableModel model1= (DefaultTableModel) StdTable.getModel();
+        if(StdTable.getSelectedRowCount()==1){
           String StdName = std_Name.getText();
           String StdID = std_ID.getText();
           String StdEmail = std_Email.getText();
           String StdCNIC =  std_CNIC.getText();
                  
-        StdTabel.setValueAt(StdName , StdTabel.getSelectedRow(), 0);
-        StdTabel.setValueAt(StdID, StdTabel.getSelectedRow(), 1);
-        StdTabel.setValueAt(StdEmail, StdTabel.getSelectedRow(), 2);
-        StdTabel.setValueAt(StdCNIC, StdTabel.getSelectedRow(), 3);
+        StdTable.setValueAt(StdName , StdTable.getSelectedRow(), 0);
+        StdTable.setValueAt(StdID, StdTable.getSelectedRow(), 1);
+        StdTable.setValueAt(StdEmail, StdTable.getSelectedRow(), 2);
+        StdTable.setValueAt(StdCNIC, StdTable.getSelectedRow(), 3);
         
         JOptionPane.showMessageDialog(null,"Student List Updated Successfully");
         }
         else{
-        if(StdTabel.getRowCount()==0){
+        if(StdTable.getRowCount()==0){
             JOptionPane.showMessageDialog(null,"Table is empty");
         }
         else{
@@ -321,6 +365,19 @@ public class Student extends javax.swing.JFrame {
         }
 
     }//GEN-LAST:event_UpdateBTNActionPerformed
+
+    private void SearchFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SearchFieldActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_SearchFieldActionPerformed
+
+    private void SearchFieldKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_SearchFieldKeyReleased
+        // TODO add your handling code here:
+        DefaultTableModel model1 = (DefaultTableModel) StdTable.getModel();
+        String search = SearchField.getText();
+        TableRowSorter<DefaultTableModel> tr = new TableRowSorter<DefaultTableModel>(model1);
+        StdTable.setRowSorter(tr);
+        tr.setRowFilter(RowFilter.regexFilter(search));
+    }//GEN-LAST:event_SearchFieldKeyReleased
 
     /**
      * @param args the command line arguments
@@ -360,7 +417,8 @@ public class Student extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton AddBTN;
     private javax.swing.JButton DeleteBTN;
-    private javax.swing.JTable StdTabel;
+    private javax.swing.JTextField SearchField;
+    private javax.swing.JTable StdTable;
     private javax.swing.JButton UpdateBTN;
     private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
@@ -368,6 +426,8 @@ public class Student extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTextField std_CNIC;
