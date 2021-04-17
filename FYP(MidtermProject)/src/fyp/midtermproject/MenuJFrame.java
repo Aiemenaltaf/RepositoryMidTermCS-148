@@ -152,9 +152,8 @@ public class MenuJFrame extends javax.swing.JFrame {
 
     private void ADYsecActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ADYsecActionPerformed
         // TODO add your handling code here:
-         ADVISORYsecJFrame a = new ADVISORYsecJFrame();
-         a.setVisible(true);
-        
+          loginJFrame lg = new loginJFrame();
+         lg.setVisible(true);        
     }//GEN-LAST:event_ADYsecActionPerformed
 
     private void STDsecActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_STDsecActionPerformed
