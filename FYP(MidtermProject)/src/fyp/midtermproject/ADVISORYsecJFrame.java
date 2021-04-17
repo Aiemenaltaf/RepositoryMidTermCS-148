@@ -6,6 +6,7 @@
 package fyp.midtermproject;
 
 import java.util.ArrayList;
+import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
 import javax.swing.RowFilter;
 import javax.swing.table.DefaultTableModel;
@@ -16,6 +17,7 @@ import javax.swing.table.TableRowSorter;
  * @author Altaf Hussain
  */
 public class ADVISORYsecJFrame extends javax.swing.JFrame {
+     FilehandlingFYP f = new FilehandlingFYP();
           DefaultTableModel model;
 
     /**
@@ -354,6 +356,7 @@ public class ADVISORYsecJFrame extends javax.swing.JFrame {
 
     private void CancelBTNActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CancelBTNActionPerformed
         // TODO add your handling code here:
+        f.saveEvlMarksData("Marksheet.csv");
         this.dispose();
     }//GEN-LAST:event_CancelBTNActionPerformed
 
@@ -363,6 +366,22 @@ public class ADVISORYsecJFrame extends javax.swing.JFrame {
 
     private void SaveDataActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SaveDataActionPerformed
         // TODO add your handling code here:
+        JFileChooser  chooser = new JFileChooser(); 
+   
+    chooser.setDialogTitle("Choose a destination to save exported file");
+    chooser.setFileSelectionMode(JFileChooser.FILES_ONLY);
+    //
+    // disable the "All files" option.
+    //
+    //chooser.setAcceptAllFileFilterUsed(false);
+    
+    if(chooser.showSaveDialog(this) == JFileChooser.APPROVE_OPTION) { 
+     f.saveEvlMarksData(chooser.getSelectedFile()+".csv");
+      
+      }
+    else {
+      System.out.println("No Selection ");
+      }
     }//GEN-LAST:event_SaveDataActionPerformed
 
     private void AddBTNActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AddBTNActionPerformed

@@ -360,10 +360,10 @@ public class EvaluatioCritera extends javax.swing.JFrame {
 
     private void DeleteBTNActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_DeleteBTNActionPerformed
         // TODO add your handling code here:
-         DefaultTableModel model1= (DefaultTableModel) jTable1.getModel();
+         DefaultTableModel model= (DefaultTableModel) jTable1.getModel();
         if(jTable1.getSelectedRowCount()==1)
         {
-            model1.removeRow(jTable1.getSelectedRow());
+            model.removeRow(jTable1.getSelectedRow());
         }
         else
         {

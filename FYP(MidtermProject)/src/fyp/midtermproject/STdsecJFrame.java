@@ -6,6 +6,7 @@
 package fyp.midtermproject;
 
 import java.util.ArrayList;
+import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
 import javax.swing.RowFilter;
 import javax.swing.table.DefaultTableModel;
@@ -16,6 +17,7 @@ import javax.swing.table.TableRowSorter;
  * @author Altaf Hussain
  */
 public class STdsecJFrame extends javax.swing.JFrame {
+    FilehandlingFYP f = new FilehandlingFYP();
     DefaultTableModel model;
 
     /**
@@ -358,7 +360,22 @@ public class STdsecJFrame extends javax.swing.JFrame {
 
     private void ExportBTNActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ExportBTNActionPerformed
         // TODO add your handling code here:
-        this.dispose();
+       JFileChooser  chooser = new JFileChooser(); 
+   
+    chooser.setDialogTitle("Choose a destination to save exported file");
+    chooser.setFileSelectionMode(JFileChooser.FILES_ONLY);
+    //
+    // disable the "All files" option.
+    //
+    //chooser.setAcceptAllFileFilterUsed(false);
+    
+    if(chooser.showSaveDialog(this) == JFileChooser.APPROVE_OPTION) { 
+     f.saveSTDselectionData(chooser.getSelectedFile()+".csv");
+      
+      }
+    else {
+      System.out.println("No Selection ");
+      }
     }//GEN-LAST:event_ExportBTNActionPerformed
 
     private void AddBTNActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AddBTNActionPerformed
@@ -383,6 +400,8 @@ public class STdsecJFrame extends javax.swing.JFrame {
 
     private void CancelBtTNActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CancelBtTNActionPerformed
         // TODO add your handling code here:
+        f.saveSTDselectionData("STDSelection.csv");
+        this.dispose();
     }//GEN-LAST:event_CancelBtTNActionPerformed
 
     private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed

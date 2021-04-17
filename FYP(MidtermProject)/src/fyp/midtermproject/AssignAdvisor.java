@@ -6,6 +6,7 @@
 package fyp.midtermproject;
 
 import java.util.ArrayList;
+import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
 import javax.swing.RowFilter;
 import javax.swing.table.DefaultTableModel;
@@ -16,6 +17,7 @@ import javax.swing.table.TableRowSorter;
  * @author Altaf Hussain
  */
 public class AssignAdvisor extends javax.swing.JFrame {
+    FilehandlingFYP f = new FilehandlingFYP();
         DefaultTableModel model;
 
 
@@ -301,7 +303,22 @@ public class AssignAdvisor extends javax.swing.JFrame {
 
     private void ExportBTNActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ExportBTNActionPerformed
         // TODO add your handling code here:
-        this.dispose();
+       JFileChooser  chooser = new JFileChooser(); 
+   
+    chooser.setDialogTitle("Choose a destination to save exported file");
+    chooser.setFileSelectionMode(JFileChooser.FILES_ONLY);
+    //
+    // disable the "All files" option.
+    //
+    //chooser.setAcceptAllFileFilterUsed(false);
+    
+    if(chooser.showSaveDialog(this) == JFileChooser.APPROVE_OPTION) { 
+     f.saveAssignAdvisorData(chooser.getSelectedFile()+".csv");
+      
+      }
+    else {
+      System.out.println("No Selection ");
+      }
     }//GEN-LAST:event_ExportBTNActionPerformed
 
     private void ID_s2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ID_s2ActionPerformed
@@ -318,6 +335,8 @@ public class AssignAdvisor extends javax.swing.JFrame {
 
     private void CancelBTN1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CancelBTN1ActionPerformed
         // TODO add your handling code here:
+        f.saveAssignAdvisorData("AssignAdvisors.csv");
+        this.dispose();
     }//GEN-LAST:event_CancelBTN1ActionPerformed
 
     private void SearchFieldKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_SearchFieldKeyReleased
