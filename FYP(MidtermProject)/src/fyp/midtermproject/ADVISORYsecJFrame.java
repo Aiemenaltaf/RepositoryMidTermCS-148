@@ -100,6 +100,7 @@ public class ADVISORYsecJFrame extends javax.swing.JFrame {
         jButton5 = new javax.swing.JButton();
         SearchField = new javax.swing.JTextField();
         SaveData = new javax.swing.JButton();
+        CancelBTN1 = new javax.swing.JButton();
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -155,7 +156,7 @@ public class ADVISORYsecJFrame extends javax.swing.JFrame {
         });
 
         CancelBTN.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
-        CancelBTN.setText("Cancel");
+        CancelBTN.setText("Export");
         CancelBTN.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 CancelBTNActionPerformed(evt);
@@ -221,6 +222,14 @@ public class ADVISORYsecJFrame extends javax.swing.JFrame {
             }
         });
 
+        CancelBTN1.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        CancelBTN1.setText("Exit");
+        CancelBTN1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                CancelBTN1ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -230,8 +239,14 @@ public class ADVISORYsecJFrame extends javax.swing.JFrame {
                 .addComponent(jLabel1)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addContainerGap(29, Short.MAX_VALUE)
+                .addContainerGap(21, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(SaveData)
+                        .addGap(18, 18, 18)
+                        .addComponent(CancelBTN)
+                        .addGap(18, 18, 18)
+                        .addComponent(CancelBTN1))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel8)
@@ -258,12 +273,8 @@ public class ADVISORYsecJFrame extends javax.swing.JFrame {
                         .addGap(18, 18, 18)
                         .addComponent(UpdBTN)
                         .addGap(18, 18, 18)
-                        .addComponent(DeleteBTN))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                        .addComponent(SaveData)
-                        .addGap(138, 138, 138)
-                        .addComponent(CancelBTN)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 43, Short.MAX_VALUE)
+                        .addComponent(DeleteBTN)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 51, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jScrollPane2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 1105, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
@@ -310,9 +321,10 @@ public class ADVISORYsecJFrame extends javax.swing.JFrame {
                             .addComponent(jLabel8)
                             .addComponent(totalEVL, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(18, 18, 18)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(SaveData, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(CancelBTN, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(SaveData, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(CancelBTN1, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(AddBTN)
@@ -465,6 +477,11 @@ public class ADVISORYsecJFrame extends javax.swing.JFrame {
         tr.setRowFilter(RowFilter.regexFilter(search));
     }//GEN-LAST:event_SearchFieldKeyReleased
 
+    private void CancelBTN1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CancelBTN1ActionPerformed
+        // TODO add your handling code here:
+        this.dispose();
+    }//GEN-LAST:event_CancelBTN1ActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -503,6 +520,7 @@ public class ADVISORYsecJFrame extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton AddBTN;
     private javax.swing.JButton CancelBTN;
+    private javax.swing.JButton CancelBTN1;
     private javax.swing.JButton DeleteBTN;
     private javax.swing.JTextField IDs1;
     private javax.swing.JTextField IDs2;

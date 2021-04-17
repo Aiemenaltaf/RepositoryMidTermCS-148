@@ -86,6 +86,7 @@ public class AssignAdvisor extends javax.swing.JFrame {
         jLabel6 = new javax.swing.JLabel();
         SearchField = new javax.swing.JTextField();
         CancelBTN1 = new javax.swing.JButton();
+        CancelBTN2 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -181,10 +182,18 @@ public class AssignAdvisor extends javax.swing.JFrame {
         });
 
         CancelBTN1.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
-        CancelBTN1.setText("Cancel");
+        CancelBTN1.setText("Export");
         CancelBTN1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 CancelBTN1ActionPerformed(evt);
+            }
+        });
+
+        CancelBTN2.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        CancelBTN2.setText("Exit");
+        CancelBTN2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                CancelBTN2ActionPerformed(evt);
             }
         });
 
@@ -208,20 +217,23 @@ public class AssignAdvisor extends javax.swing.JFrame {
                             .addComponent(Adv_name, javax.swing.GroupLayout.Alignment.TRAILING)
                             .addComponent(ID_s1, javax.swing.GroupLayout.PREFERRED_SIZE, 193, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                        .addGap(31, 31, 31)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                                .addGap(31, 31, 31)
+                            .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addComponent(AddBTN)
                                 .addGap(46, 46, 46)
-                                .addComponent(UpdBTN)
-                                .addGap(50, 50, 50))
+                                .addComponent(UpdBTN))
                             .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGap(106, 106, 106)
                                 .addComponent(ExportBTN)
-                                .addGap(100, 100, 100)))
+                                .addGap(29, 29, 29)
+                                .addComponent(CancelBTN1)))
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(CancelBTN1)
-                            .addComponent(DeleteBtN))))
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addGap(50, 50, 50)
+                                .addComponent(DeleteBtN))
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addGap(23, 23, 23)
+                                .addComponent(CancelBTN2)))))
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(18, 18, 18)
@@ -265,11 +277,12 @@ public class AssignAdvisor extends javax.swing.JFrame {
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addComponent(Adv_name, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(35, 35, 35)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(ExportBTN, javax.swing.GroupLayout.DEFAULT_SIZE, 39, Short.MAX_VALUE)
-                            .addComponent(CancelBTN1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 166, Short.MAX_VALUE)
+                        .addGap(27, 27, 27)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(ExportBTN, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(CancelBTN1, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(CancelBTN2, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(AddBTN)
                             .addComponent(UpdBTN)
@@ -407,6 +420,11 @@ public class AssignAdvisor extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_DeleteBtNActionPerformed
 
+    private void CancelBTN2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CancelBTN2ActionPerformed
+        // TODO add your handling code here:
+        this.dispose();
+    }//GEN-LAST:event_CancelBTN2ActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -446,6 +464,7 @@ public class AssignAdvisor extends javax.swing.JFrame {
     private javax.swing.JButton AddBTN;
     private javax.swing.JTextField Adv_name;
     private javax.swing.JButton CancelBTN1;
+    private javax.swing.JButton CancelBTN2;
     private javax.swing.JButton DeleteBtN;
     private javax.swing.JButton ExportBTN;
     private javax.swing.JTextField ID_s1;

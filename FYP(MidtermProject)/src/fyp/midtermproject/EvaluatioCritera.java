@@ -87,6 +87,7 @@ public class EvaluatioCritera extends javax.swing.JFrame {
         CancelBTN = new javax.swing.JButton();
         jLabel6 = new javax.swing.JLabel();
         SearchField = new javax.swing.JTextField();
+        CancelBTN1 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -168,7 +169,7 @@ public class EvaluatioCritera extends javax.swing.JFrame {
         });
 
         CancelBTN.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
-        CancelBTN.setText("Cancel");
+        CancelBTN.setText("Export");
         CancelBTN.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 CancelBTNActionPerformed(evt);
@@ -186,6 +187,14 @@ public class EvaluatioCritera extends javax.swing.JFrame {
         SearchField.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyReleased(java.awt.event.KeyEvent evt) {
                 SearchFieldKeyReleased(evt);
+            }
+        });
+
+        CancelBTN1.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        CancelBTN1.setText("Exit");
+        CancelBTN1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                CancelBTN1ActionPerformed(evt);
             }
         });
 
@@ -211,10 +220,12 @@ public class EvaluatioCritera extends javax.swing.JFrame {
                                     .addComponent(Marks)
                                     .addComponent(Rubrics)))
                             .addGroup(jPanel3Layout.createSequentialGroup()
-                                .addGap(0, 0, Short.MAX_VALUE)
                                 .addComponent(ExportData)
                                 .addGap(18, 18, 18)
-                                .addComponent(CancelBTN))))
+                                .addComponent(CancelBTN)
+                                .addGap(18, 18, 18)
+                                .addComponent(CancelBTN1)
+                                .addGap(0, 0, Short.MAX_VALUE))))
                     .addGroup(jPanel3Layout.createSequentialGroup()
                         .addGap(41, 41, 41)
                         .addComponent(AddBtN, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -264,7 +275,8 @@ public class EvaluatioCritera extends javax.swing.JFrame {
                         .addGap(39, 39, 39)
                         .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(ExportData)
-                            .addComponent(CancelBTN))
+                            .addComponent(CancelBTN)
+                            .addComponent(CancelBTN1))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 172, Short.MAX_VALUE)
                         .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(DeleteBTN)
@@ -412,6 +424,11 @@ public class EvaluatioCritera extends javax.swing.JFrame {
         tr.setRowFilter(RowFilter.regexFilter(search));
     }//GEN-LAST:event_SearchFieldKeyReleased
 
+    private void CancelBTN1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CancelBTN1ActionPerformed
+        // TODO add your handling code here:
+        this.dispose();
+    }//GEN-LAST:event_CancelBTN1ActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -450,6 +467,7 @@ public class EvaluatioCritera extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton AddBtN;
     private javax.swing.JButton CancelBTN;
+    private javax.swing.JButton CancelBTN1;
     private javax.swing.JTextField Deadline;
     private javax.swing.JButton DeleteBTN;
     private javax.swing.JButton ExportData;
