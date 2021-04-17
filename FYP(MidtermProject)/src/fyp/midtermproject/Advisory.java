@@ -349,10 +349,10 @@ public class Advisory extends javax.swing.JFrame {
            String AdvPhoneNo = Adv_PhoneNo.getText();
         
         
-        AdTable.setValueAt(Adv_Name, AdTable.getSelectedRow(), 0);
-        AdTable.setValueAt(Adv_CNiC, AdTable.getSelectedRow(), 1);
-        AdTable.setValueAt(Adv_Email, AdTable.getSelectedRow(), 2);
-        AdTable.setValueAt(Adv_PhoneNo, AdTable.getSelectedRow(), 3);
+        AdTable.setValueAt(AdvName, AdTable.getSelectedRow(), 0);
+        AdTable.setValueAt(AdvCNIC, AdTable.getSelectedRow(), 1);
+        AdTable.setValueAt(AdvEmail, AdTable.getSelectedRow(), 2);
+        AdTable.setValueAt(AdvPhoneNo, AdTable.getSelectedRow(), 3);
         
         JOptionPane.showMessageDialog(null,"List of Advisors Updated Successfully");
         }
